@@ -1,0 +1,8 @@
+# Ignore everything
+*
+
+# Track only a specific folder (replace with your project path)
+!/Web Development/Travel Booking System-Sathi/
+
+# Optional: Allow Git to track .gitignore itself
+!.gitignore
