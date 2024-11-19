@@ -22,9 +22,15 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// document.getElementById('extend').addEventListener('click', function() {
-//     const box = document.getElementById('box');
-//     box.classList.toggle('open'); // Toggle the 'open' class to show/hide the box
-// });
+
+document.getElementById("toggleButton").addEventListener("click", function () {
+    const sidebar = document.getElementById("sidebar");
+    if (sidebar.style.left === "0px") {
+      sidebar.style.left = "-250px"; // Hide the sidebar
+    } else {
+      sidebar.style.left = "0px"; // Show the sidebar
+    }
+  });
+  
 
 
