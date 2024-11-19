@@ -27,7 +27,7 @@ html, body {
 #extend {
    font-size: 30px;
    cursor: pointer;
-   color: rgb(9, 68, 4);;
+   color: rgb(9, 68, 4);
 }
 
 #box {
