@@ -26,3 +26,5 @@ document.addEventListener("DOMContentLoaded", function() {
 //     const box = document.getElementById('box');
 //     box.classList.toggle('open'); // Toggle the 'open' class to show/hide the box
 // });
+
+

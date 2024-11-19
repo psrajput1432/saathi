@@ -30,18 +30,28 @@ html, body {
    color: rgb(9, 68, 4);;
 }
 
-/* #box {
-   height: 100%;
+#box {
+   position: absolute; /* Position inside #main */
+   top: 0;
+   left: 0;
+   height: 0; /* Collapsed by default */
    width: 25%;
-   background-color:whitesmoke;
+   background-color: whitesmoke;
    display: none;
    z-index: 9999;
-   
-} */
+   overflow-y: auto; /* Allow scrolling if content overflows */
+   transition: height 0.3s ease; /* Smooth transition for height */
+}
 
-/* #box.open {
-   display: block; /* Visible when class 'open' is added
-} */
+#box.open {
+   display: block; /* Make visible when 'open' */
+}
+
+#main {
+   position: relative; /* Ensure #box is positioned within #main */
+   height: 100vh; /* Adjust based on your layout needs */
+}
+
 
 #extend:hover{
    background-color:rgb(211, 207, 207);
