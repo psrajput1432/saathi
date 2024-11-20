@@ -5,16 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saathi</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="extend.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
 </head>
 <body>
-    <script type="module" src="/main.js"></script>
     <div id="main">
         <div id="header">
-            <div id="extend"><i class="ri-align-justify"></i></div>
-            <div id="box"></div>
+            <div id="sidebar" class="sidebar">
+                <ul>
+                  <li> </li>
+                  <li> </li>
+                  <li>Home</li> 
+                  <li>About Us</li>
+                  <li>Feedback</li>
+                  <li>Travel History</li>
+                  <li>Transportation Booking</li>
+                  <li><a href="https://www.accuweather.com/" target="_blank">Weather Forecast</a></li>
+
+                  <li>Route</li>
+                  <li><a href="https://www.google.com/maps?q=Your+Location" target="_blank">Open in Google Maps</a></li>
+                  <li>Compare Fare</li>
+                </ul>
+              </div>
+            <button id="toggleButton" class="toggle-button">☰</button>
+            
             <div id="logo">
-                <img src="images\Sathi__3_-removebg-preview.png" width="180px" height="140px">
+                <img src="images\Sathi__3_-removebg-preview.png" width="244.278x" height="160px">
             </div>
             <div class="vehicle"><i class="ri-search-line"></i></div>
             <div class="vehicle" id="bus">
@@ -24,22 +40,32 @@
             <div class="vehicle" id="flight"><a href="flight.html"><i class="ri-plane-line"></i></div></a>
             <div class="vehicle" id="train"><a href="train.html"><i class="ri-train-fill"></i></div></a>
             <div class="vehicle" id="taxi"><a href="cab.html"><i class="ri-taxi-fill"></i></div></a>
-            <div class="vehicle" id="motorbike"><i class="ri-motorbike-fill"></i></div>
-            <div class="vehicle" id="contact">Contact Us</div>
+            <div class="vehicle" id="toggle-button">Contact Us</div>
+<div id="contact-details">
+    <p>Phone Number: 897456325</p>
+    <p>Email: sathi@gmail.com</p>
+</div>
+
+            
+            
             <div id="login">
                 <i class="ri-user-3-fill"></i>
                 <h4>Login</h4>
             </div>
             <div id="sign">
-                <h4>Sign in</h4>
+                <h4>Sign up</h4>
             </div>
         </div>
-
         <div id="fakeheader"></div>
-
         <div id="page1">
+            <div id="webBack"><img src="images\webpic.png" ></div>
             <div id="AI"><img id="aiImage" src="images/image-removebg-preview.png" /></div>
             <div id="newImage"><img id="newImg" src="images\Sathi__5_-removebg-preview.png" /></div>
+            <!-- <div id="background">
+                <img src="images\Sathi__4_-removebg-preview.png">
+            </div> -->
+        </div>
+        <div id="page2">
             <div id="background">
                 <img src="images\Sathi__4_-removebg-preview.png">
             </div>

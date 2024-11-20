@@ -16,6 +16,7 @@ html, body {
    display: flex;
    align-items: center;
    position: fixed;
+   z-index: 1000;
 }
 
 #fakeheader {
@@ -24,34 +25,16 @@ html, body {
    background-color: rgba(255, 187, 0, 0.937);
 }
 
-#extend {
-   font-size: 30px;
-   cursor: pointer;
-   color: rgb(9, 68, 4);
-}
-
-/* #box {
-   height: 100%;
-   width: 25%;
-   background-color:whitesmoke;
-   display: none;
-   z-index: 9999;
-   
-} */
-
-/* #box.open {
-   display: block; /* Visible when class 'open' is added
-} */
-
-#extend:hover{
-   background-color:rgb(211, 207, 207);
-   border-radius: 5%;
+#main {
+   position: relative; 
+   height: 100vh; /* Adjust based on your layout needs */
 }
 
 #logo img {
    align-items: center;
    justify-content: center;
    padding-top: 40px;
+   padding-left: 40px;
 }
 
 #login {
@@ -102,6 +85,16 @@ html, body {
    display: flex;
    align-items: end;
    justify-content: right;
+   position: relative;
+   z-index: 1;
+}
+#webBack{
+   height: 100vh;
+}
+
+#page2{
+   width: 100vw;
+   background-color: black;
    position: relative;
 }
 

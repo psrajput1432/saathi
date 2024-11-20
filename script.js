@@ -22,7 +22,35 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// document.getElementById('extend').addEventListener('click', function() {
-//     const box = document.getElementById('box');
-//     box.classList.toggle('open'); // Toggle the 'open' class to show/hide the box
-// });
+
+document.getElementById("toggleButton").addEventListener("click", function () {
+    const sidebar = document.getElementById("sidebar");
+    if (sidebar.style.left === "0px") {
+      sidebar.style.left = "-250px"; // Hide the sidebar
+    } else {
+      sidebar.style.left = "0px"; // Show the sidebar
+    }
+  });
+ 
+ // Select the toggle button and contact details section
+const toggleButton = document.getElementById('toggle-button');
+const contactDetails = document.getElementById('contact-details');
+
+// Add click event listener to toggle visibility
+toggleButton.addEventListener('click', () => {
+    const buttonRect = toggleButton.getBoundingClientRect(); // Get button's position
+    if (!contactDetails.classList.contains('visible')) {
+        // Show contact details below the button
+        contactDetails.style.top = `${buttonRect.bottom}px`; // Position below button
+        contactDetails.style.left = `${buttonRect.left + buttonRect.width / 2}px`; // Center horizontally
+    } else {
+        // Hide contact details
+        contactDetails.style.top = `-100%`;
+    }
+    contactDetails.classList.toggle('visible'); // Toggle visibility class
+});
+
+
+  
+
+
