@@ -52,3 +52,28 @@
 .toggle-button:hover {
   background-color: #ffaa00;
 }
+
+
+/* Initially hide the contact details */
+#contact-details {
+  position: absolute;
+  top: 0; /* Will be dynamically adjusted */
+  left: 60px; /* Default to align with the button */
+  width: 300px; /* Adjust width as needed */
+  background-color: #f9f9f9;
+  color: #333;
+  margin-left: -100px;
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(-100%); /* Hidden above the button */
+  transition: transform 0.5s ease; /* Smooth slide-in effect */
+  z-index: 1000;
+}
+
+/* When visible, slide into view */
+#contact-details.visible {
+  transform: translateY(0); /* Slide into position */
+  
+}
+
