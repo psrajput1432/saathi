@@ -6,6 +6,8 @@
     <title>Saathi</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="extend.css">
+    <link rel="stylesheet" href="\login\login.css">
+    <link rel="stylesheet" href="\forgot\forgot.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
 </head>
 <body>
@@ -45,25 +47,70 @@
     <p>Phone Number: 897456325</p>
     <p>Email: sathi@gmail.com</p>
 </div>
-
-            
-            
-            <div id="login">
+            <div id="register">
+                <h5>Register</h5>
+            </div>
+            <button class="login-icon" onclick="openPopup()"><h5>Login</h5></button>
+            <!-- Pop-Up -->
+            <div id="popup" class="popup">
+                <div class="popup-content">
+                  <span class="close-popup" onclick="closePopup()">&times;</span>
+                  <h2>Login with your email id and password</h2>
+                  <form>
+                    <!-- <input type="text" placeholder="Full Name" required> -->
+                    <input type="EMAIl" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                    <!-- <button type="forgot" style="color: blue;" >Forgot password</button> -->
+                  </form>
+                  <div class="login-container">
+                    <button onclick="openForgotPassword()"><p>Forgot Password</p></button>
+                  </div>
+                  <div id="forgot-password-popup" class="POPUP">
+                    <div class="POPUP-CONTENT">
+                      <span class="CLOSE-POPUP" onclick="closeForgotPassword()">&times;</span>
+                      <div id="step-1">
+                        <p>Enter your registered email ID:</p>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                        <button onclick="sendOtp()">Send OTP</button>
+                      </div>
+                
+                      <div id="step-2" style="display: none;">
+                        <p>Enter OTP sent to your email:</p>
+                        <input type="text" id="otp" placeholder="Enter OTP" required>
+                        <button onclick="verifyOtp()">Verify OTP</button>
+                      </div>
+                
+                      <div id="step-3" style="display: none;">
+                        <p>Create a new password:</p>
+                        <input type="password" id="new-password" placeholder="New Password" required>
+                        <p class="strength" id="strength"></p>
+                        <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+                        <button onclick="resetPassword()">Reset Password</button>
+                      </div>
+                    </div>
+                  </div>
+                
+                  <!-- Log-In Again Pop-Up -->
+                  <div id="login-again-popup" class="POPUP">
+                    <div class="POPUP-CONTENT">
+                      <h2>Password Reset Successful</h2>
+                      <p>Please log in again.</p>
+                      <button onclick="closeLoginAgain()">OK</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="profile">
                 <i class="ri-user-3-fill"></i>
-                <h4>Login</h4>
-            </div>
-            <div id="sign">
-                <h4>Sign up</h4>
-            </div>
+                <h5>My Profile</h5>
+              </div>
         </div>
         <div id="fakeheader"></div>
         <div id="page1">
             <div id="webBack"><img src="images\webpic.png" ></div>
             <div id="AI"><img id="aiImage" src="images/image-removebg-preview.png" /></div>
             <div id="newImage"><img id="newImg" src="images\Sathi__5_-removebg-preview.png" /></div>
-            <!-- <div id="background">
-                <img src="images\Sathi__4_-removebg-preview.png">
-            </div> -->
         </div>
         <div id="page2">
             <div id="background">
@@ -72,5 +119,7 @@
         </div>
     </div>
     <script src="script.js"></script>
+    <script src="\login\login.js"></script>
+    <script src="\forgot\forgot.js"></script>
 </body>
 </html>

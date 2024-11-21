@@ -9,5 +9,8 @@
 !*.css
 !*.js
 !/images/
+!/forgot/
+!/login/
+!/Profile/
 !*.md
 !*.png
