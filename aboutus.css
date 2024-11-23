@@ -1,0 +1,105 @@
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #fffef0; /* Light yellow background for a soft feel */
+    color: #333; /* Neutral text color for readability */
+}
+
+#about-us {
+    background: #ffffff; /* White background for the content section */
+    padding: 50px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for a lifted look */
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #228B22; /* Green color for the heading */
+    font-size: 2.5em;
+}
+
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+    border: 3px solid #FFD700; /* Gold border around the image */
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text h2 {
+    color: #FFD700; /* Yellow for the subheadings */
+    margin-bottom: 10px;
+    font-size: 1.8em;
+}
+
+.about-text ul {
+    list-style-type: disc;
+    margin: 10px 0 0 20px;
+}
+
+.about-text p,
+.about-text ul li {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    color: #333; /* Neutral color for better contrast with the background */
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    background-color: #228B22; /* Green background for stats section */
+    color: #fff; /* White text for contrast */
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+
+.stat h3 {
+    font-size: 2em;
+    margin: 0;
+}
+
+.stat p {
+    font-size: 1.2em;
+    margin: 5px 0 0;
+}
+
+.thank-you {
+    margin-top: 40px;
+    background-color: #FFD700; /* Yellow background for thank-you section */
+    color: #333; /* Text color for readability */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.thank-you h2 {
+    color: #228B22; /* Green text for contrast */
+    font-size: 2em;
+}
+
+.thank-you p {
+    font-size: 1.1em;
+    margin: 10px 0;
+}
