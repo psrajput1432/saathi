@@ -5,6 +5,12 @@
     box-sizing: border-box;
 }
 
+#notblue button a {
+    text-decoration: none; /* Remove underline from the link */
+    color: #ffffff; /* White text for the anchor */
+    display: inline-block; /* Ensures the link fills the button space */
+}
+
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
