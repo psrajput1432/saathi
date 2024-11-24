@@ -30,7 +30,7 @@ html, body {
 #logo img {
    align-items: center;
    justify-content: center;
-   padding-top: 70px;
+   padding-top: 50px;
    padding-left: 150px;
 }
 
@@ -136,10 +136,10 @@ html, body {
 
 
 
-#page3{
+#page3 {
    height: 87%;
    width: 100%;
-   background-color:white; */ 
+   background-color:white;
 }
 
 #main3{
@@ -292,4 +292,4 @@ html, body {
    margin-bottom: 0;
    padding-bottom: 0;
    display: block;
-}
+} 
