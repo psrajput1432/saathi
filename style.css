@@ -10,8 +10,8 @@ html, body {
 }
 
 #header {
-   height: 15vh;
-   width: 98.89vw;
+   height: 13%;
+   width: 100%;
    justify-content: space-around;
    background-color: rgba(255, 187, 0, 0.937);
    display: flex;
@@ -21,15 +21,11 @@ html, body {
 }
 
 #fakeheader {
-   height: 15vh;
-   width: 100vw;
+   height: 13%;
+   width: 100%;
    background-color: rgba(255, 187, 0, 0.937);
 }
 
-#main {
-   position: relative; 
-   height: 100vh; /* Adjust based on your layout needs */
-}
 
 #logo img {
    align-items: center;
@@ -38,18 +34,6 @@ html, body {
    padding-left: 40px;
 }
 
-/* #register {
-   display: flex;
-   justify-content: right;
-   align-items: center;
-   border-radius: 15px;
-   padding: 5px 10px;
-   margin-right: 20px;
-   color: white;
-   cursor: pointer;
-   background-color: rgb(9, 68, 4);
-   border-radius: 5px;
-} */
 
 #profile {
    display: flex;
@@ -65,7 +49,9 @@ html, body {
    padding-left: 4px;
 }
 
-#register:hover {
+
+
+#profile:hover {
    background-color: rgb(25, 204, 48);
 }
 
@@ -80,9 +66,11 @@ html, body {
 }
 
 #page1 {
-   height: 85vh;
-   width: 100vw;
-   background-color: black;
+   height: 87%;
+   width: 100%;
+   position: relative;
+   overflow: hidden; /* Ensures no content spills out */
+   background-color: white;
    color: whitesmoke;
    display: flex;
    align-items: end;
@@ -91,17 +79,187 @@ html, body {
    z-index: 1;
 }
 
-#webBack{
-   height: 100vh;
-   overflow-x: hidden;
+
+#webBack img{
+   position: absolute;
+   top: 0;
+   left: 0;
    width: 100%;
+   height: 100%;
+   background-size: cover;
+   z-index: -1; /* Places it behind other content */
 }
 
 #page2{
-   width: 100vw;
-   background-color: black;
+   height: 87%;
+    width: 100%;
+   background-color:white;
    position: relative;
 }
+
+
+#main {
+   display: flex;
+   flex-wrap: wrap; 
+   justify-content: center; 
+   align-items: center; 
+   gap: 20px; 
+   padding: 20px; 
+   background-color:rgba(18, 106, 124, 0.937); 
+   border-radius: 10px; 
+   box-shadow: 0 4px 10px black;
+}
+
+.container {
+   background-color: #e0e0e0; /* Light grey background for the container */
+   padding: 10px; /* Padding for the container */
+   border-radius: 10px; /* Optional: rounded corners */
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional shadow effect */
+   max-width: 100%; /* Ensures the container doesn't overflow */
+   overflow: hidden; /* Hides overflow content if any */
+}
+
+.container img {
+   width: 100%;
+   max-width: 300px; 
+   height: 100vh;
+   border-radius: 5px; 
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+   transition: transform 0.3s ease; 
+}
+
+
+.container img:hover {
+   transform: scale(1.05); 
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); 
+}
+
+
+
+#page3{
+   height: 87%;
+   width: 100%;
+   background-color:white; */ 
+}
+
+#main3{
+   height: 100%;
+   width: 100%;
+   /* background-color: bisque; */
+   display: flex;
+   align-items: center;
+   /* justify-content:space-around; */
+}
+
+.card{
+   height: 430px;
+   width: 300px;
+   border: 2px solid whitesmoke;
+   border-radius: 20px;
+   z-index: 50;
+   margin-left: 50px;
+}
+
+.card h2{
+   color: rgb(9, 129, 39);
+   margin: 20px 30px;
+   font-size: large;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.card p{
+   font-size: large;
+   margin: 20px 30px;
+   font-weight: lighter;
+}
+
+.card u{
+   margin: 20px 30px;
+   color:rgb(0, 0, 80) ;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.card u:hover{
+   color:rgb(42, 144, 181) ;
+}
+
+#card1{
+   background-color: rgba(255, 187, 0, 0.937);
+   margin-left: 70px;
+  
+}
+
+#card1 img{
+   height: 100%;
+   width: 100%;
+   object-fit: cover;
+   border-radius:20px;
+}
+
+
+#card2{
+   background-color:rgba(255, 187, 0, 0.937);
+   /* margin-left: 50px; */
+}
+
+#card2 img{
+   height: 100%;
+   width: 100%;
+   object-fit: cover;
+   border-radius:20px;
+}
+#card3{
+   background-color: rgba(255, 187, 0, 0.937);
+   /* margin-left: 50px; */
+}
+#card3 img{
+   height: 100%;
+   width: 100%;
+   object-fit: cover;
+   border-radius:20px;
+}
+
+#card4{
+   background-color: rgba(255, 187, 0, 0.937);
+   margin-right: 50px;
+}
+#card4 img{
+   height: 100%;
+   width: 100%;
+   object-fit: cover;
+   border-radius:20px;
+}
+
+
+/* img{
+   height: 100%;
+   width: 100%;
+   object-fit: cover;
+   border-radius:20px;
+} */
+
+#image{
+   height: 40%;
+   width: 100%;
+   object-fit: cover;    
+}
+
+#image h3{
+   /* font-weight:100; */
+   color: rgb(0, 0, 80);
+   font-size: 65px;
+   margin: 30px 50px;
+}
+
+#image h3:hover{
+   background-color:rgb(190, 218, 228) ;
+}
+
+#image p{
+   font-size: xx-large;
+   margin: 30px 50px;
+   font-weight: lighter;
+}
+
 
 #AI {
    position: absolute; /* Positioning to align both images */
