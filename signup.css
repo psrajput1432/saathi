@@ -1,0 +1,106 @@
+/* General Popup Styles */
+
+.register-icon {
+    justify-content: end;
+    align-items: center;
+    background-color: rgb(155, 62, 62);
+    color: whitesmoke;
+    border-radius: 5px;
+    margin-right: 30px;
+    margin-top: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: inline-block; /* Ensures the button styling applies correctly */
+    border: none; /* Removes default button border */
+  }
+  
+  .register-icon h5 {
+    margin: 0; /* Removes extra spacing within the button */
+    font-size: 16px;
+  }
+  
+  .register-icon:hover {
+    background-color: rgb(221, 80, 85);
+  }
+  
+  /* Popup styles */
+  #signupPopup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    justify-content: center;
+    align-items: center;
+  }
+  
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+}
+
+.popup-content h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.popup-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.popup-content input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+}
+
+.popup-content button {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.popup-content button:hover {
+    background-color: #218838;
+}
+
+.close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+}
+
+.close-popup:hover {
+    color: red;
+}

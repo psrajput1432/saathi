@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="extend.css">
     <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="forgot.css">
+    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="search.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
 </head>
 <body>
@@ -34,7 +36,32 @@
             <div id="logo">
                 <img src="images\Sathi__3_-removebg-preview.png" width="244.278x" height="160px">
             </div>
-            <div class="vehicle"><i class="ri-search-line"></i></div>
+
+            <!-- Integrated Search Icon and Popup -->
+            <div class="search-icon-container">
+              <i class="ri-search-line" style="font-size: 24px; cursor: pointer;" onclick="openSearchPopup()"></i>
+          </div>
+
+          <!-- Search Popup -->
+          <div class="popup-container" id="searchPopup">
+              <div class="popup-content">
+                  <span class="close-popup" onclick="closeSearchPopup()">&times;</span>
+                  <h1>Find Your Travel Destination</h1>
+                  <div class="search-box">
+                      <i class="ri-map-pin-line search-icon"></i>
+                      <input type="text" id="from-location" placeholder="From (City, Country)" />
+                  </div>
+                  <div class="search-box">
+                      <i class="ri-map-pin-line search-icon"></i>
+                      <input type="text" id="to-location" placeholder="To (City, Country)" />
+                  </div>
+                  <button class="search-button" onclick="searchTravel()">Search</button>
+                  <div id="search-results" class="results"></div>
+              </div>
+          </div>
+          
+            <!-- <div class="vehicle"><i class="ri-search-line"></i></div> -->
+
             <div class="vehicle" id="bus">
                 <a href="bus.html">
                 <i class="ri-bus-fill"></i>
@@ -47,9 +74,28 @@
     <p>Phone Number: 897456325</p>
     <p>Email: sathi@gmail.com</p>
 </div>
-            <div id="register">
-                <h5>Sign up</h5>
-            </div>
+            <button class="register-icon" onclick="openSignupPopup()"><h5>Sign Up</h5></button>
+
+            <!-- Signup Popup -->
+            <div id="signupPopup" class="popup">
+              <div class="popup-content">
+                  <span class="close-popup" onclick="closeSignupPopup()">&times;</span>
+                  <h2>Sign Up</h2>
+                  <form>
+                      <label for="name">Name</label>
+                      <input type="text" id="name" placeholder="Enter Name" required>
+
+                      <label for="email">Email</label>
+                      <input type="email" id="email" placeholder="Enter Email" required>
+
+                      <label for="password">Password</label>
+                      <input type="password" id="password" placeholder="Enter Password" required>
+
+                      <button type="submit">Register</button>
+                  </form>
+              </div>
+          </div>
+          
             <button class="login-icon" onclick="openPopup()"><h5>Login</h5></button>
             <!-- Pop-Up -->
             <div id="popup" class="popup">
@@ -121,5 +167,7 @@
     <script src="script.js"></script>
     <script src="login.js"></script>
     <script src="forgot.js"></script>
+    <script src="signup.js"></script>
+    <script src="search.js"></script>
 </body>
 </html>
