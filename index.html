@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="forgot.css">
     <link rel="stylesheet" href="signup.css">
     <link rel="stylesheet" href="search.css">
+    <link rel="stylesheet" href="palatte.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
 </head>
 <body>
@@ -156,7 +157,89 @@
         </div>
         <div id="fakeheader"></div>
         <div id="page1">
-            <div id="webBack"><img src="https://img.aelieve.com/wYiwMmE-QHgVgaPM/w:auto/h:auto/q:74/https://cdn.aelieve.com/067b5cb0-travel-toruism.jpg" ></div>
+            <div id="webBack">
+              <div class="search-palette" style="margin: 0;
+              padding: 20px;
+              background-color: #f9f9f9;">
+                <div class="trip-options">
+                  <label><input type="radio" name="trip-type" checked> One Way</label>
+                  <label><input type="radio" name="trip-type"> Round Trip</label>
+                  <label><input type="radio" name="trip-type"> Multi City</label>
+                </div>
+                <div class="search-fields">
+                  <div>
+                    <label>From</label>
+                    <input type="text" placeholder="Delhi, DEL, Delhi Airport India">
+                  </div>
+                  <div>
+                    <label>To</label>
+                    <input type="text" placeholder="Bengaluru, BLR, Bengaluru International Airport">
+                  </div>
+                  <div>
+                    <label>Departure</label>
+                    <input type="date">
+                  </div>
+                  <div>
+                    <label>Return</label>
+                    <input type="date" disabled placeholder="Tap to add a return date for bigger discounts">
+                  </div>
+                  <div>
+                    <label>Travellers & Class</label>
+                    <button id="travellers-class">1 Traveller - Economy</button>
+                  </div>
+                </div>
+                <div class="special-fares">
+                  <p>Select a special fare</p>
+                  <div>
+                    <button class="active">Extra Savings</button>
+                    <button>Regular</button>
+                    <button>Student</button>
+                    <button>Senior Citizen</button>
+                    <button>Armed Forces</button>
+                    <button>Doctor and Nurses</button>
+                  </div>
+                </div>
+                <div class="traveller-modal" id="traveller-modal">
+                  <div class="modal-content">
+                    <h3>Travellers & Class</h3>
+                    <div>
+                      <label>ADULTS (12y+)</label>
+                      <div class="counter">
+                        <button class="decrement">-</button>
+                        <span id="adults">1</span>
+                        <button class="increment">+</button>
+                      </div>
+                    </div>
+                    <div>
+                      <label>CHILDREN (2y-12y)</label>
+                      <div class="counter">
+                        <button class="decrement">-</button>
+                        <span id="children">0</span>
+                        <button class="increment">+</button>
+                      </div>
+                    </div>
+                    <div>
+                      <label>INFANTS (below 2y)</label>
+                      <div class="counter">
+                        <button class="decrement">-</button>
+                        <span id="infants">0</span>
+                        <button class="increment">+</button>
+                      </div>
+                    </div>
+                    <div>
+                      <label>CHOOSE TRAVEL CLASS</label>
+                      <div class="travel-class">
+                        <button class="class-option active">Economy/Premium Economy</button>
+                        <button class="class-option">Premium Economy</button>
+                        <button class="class-option">Business</button>
+                        <button class="class-option">First Class</button>
+                      </div>
+                    </div>
+                    <button class="apply">APPLY</button>
+                  </div>
+                </div>
+              </div>
+              <img src="https://img.aelieve.com/wYiwMmE-QHgVgaPM/w:auto/h:auto/q:74/https://cdn.aelieve.com/067b5cb0-travel-toruism.jpg" ></div>
             <div id="AI"><img id="aiImage" src="images/image-removebg-preview.png" /></div>
             <div id="newImage"><img id="newImg" src="images\Sathi__5_-removebg-preview.png" /></div>
         </div>
@@ -214,5 +297,6 @@
     <script src="forgot.js"></script>
     <script src="signup.js"></script>
     <script src="search.js"></script>
+    <script src="palatte.js"></script>
 </body>
 </html>
