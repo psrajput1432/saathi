@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Train Results</title>
+  <link rel="stylesheet" href="train_result.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Available Trains</h1>
+    </header>
+    <main>
+      <div id="trainResults" class="results-container">
+        <p>Loading train options...</p>
+      </div>
+    </main>
+  </div>
+  <script>
+    // Parse query parameters from URL
+    const params = new URLSearchParams(window.location.search);
+    const from = params.get('from');
+    const to = params.get('to');
+    const date = params.get('date');
+
+    // Display the results dynamically
+    document.getElementById('trainResults').innerHTML = `
+      <h2>Results for: ${from} to ${to}</h2>
+      <p>Travel Date: ${date}</p>
+      <ul>
+        <li>Train 1: Rajdhani Express - ₹1,500</li>
+        <li>Train 2: Shatabdi Express - ₹1,200</li>
+        <li>Train 3: Garib Rath - ₹800</li>
+        <li>Train 4: Sleeper Class Express - ₹400</li>
+      </ul>
+    `;
+  </script>
+</body>
+</html>
