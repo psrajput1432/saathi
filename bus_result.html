@@ -5,6 +5,109 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bus Results</title>
   <link rel="stylesheet" href="bus_result.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .results-container {
+      background: #f9f9f9;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .bus-item {
+      margin-bottom: 20px;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    .bus-item h3 {
+      margin: 0;
+    }
+    .book-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .book-btn:hover {
+      background: #0056b3;
+    }
+
+    /* Dialog styles */
+    .dialog {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    .dialog-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 500px;
+    }
+    .dialog-header {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    .dialog-body {
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+    .close-btn, .pay-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      font-size: 1rem;
+    }
+    .close-btn {
+      background: #ff4d4d;
+      color: white;
+    }
+    .pay-btn {
+      background: #28a745;
+      color: white;
+      margin-left: 10px;
+    }
+
+    .passenger-list {
+      margin-top: 10px;
+    }
+    .passenger-item {
+      margin-bottom: 15px;
+    }
+    .passenger-item input {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -17,23 +120,115 @@
       </div>
     </main>
   </div>
-  <script>
-    // Parse query parameters from URL
-    const params = new URLSearchParams(window.location.search);
-    const from = params.get('from');
-    const to = params.get('to');
-    const date = params.get('date');
 
-    // Display the results dynamically
-    document.getElementById('busResults').innerHTML = `
-      <h2>Results for: ${from} to ${to}</h2>
-      <p>Travel Date: ${date}</p>
-      <ul>
-        <li>Bus 1: Deluxe AC - ₹500</li>
-        <li>Bus 2: Non-AC Sleeper - ₹400</li>
-        <li>Bus 3: AC Sleeper - ₹700</li>
-      </ul>
+  <!-- Booking Dialog -->
+  <div id="bookingDialog" class="dialog">
+    <div class="dialog-content">
+      <div class="dialog-header">
+        Booking Details
+      </div>
+      <div class="dialog-body">
+        <p id="dialogDetails"></p>
+        <label for="numPassengers">Number of Passengers:</label>
+        <input type="number" id="numPassengers" min="1" placeholder="Enter number of passengers" onchange="updatePassengerFields()" />
+
+        <div id="passengerFields" class="passenger-list"></div>
+      </div>
+      <button class="close-btn" onclick="closeDialog()">Close</button>
+      <button class="pay-btn" onclick="payNow()">Pay Now</button>
+    </div>
+  </div>
+
+  <script>
+    // Bus data (for example purposes)
+    const buses = [
+      { name: "Deluxe AC", price: 500, type: "AC Seater", departure: "10:00 AM", arrival: "2:00 PM" },
+      { name: "Non-AC Sleeper", price: 400, type: "Sleeper", departure: "11:00 AM", arrival: "3:30 PM" },
+      { name: "AC Sleeper", price: 700, type: "Sleeper AC", departure: "12:30 PM", arrival: "5:00 PM" },
+      { name: "Luxury Bus", price: 1000, type: "Luxury AC", departure: "1:00 PM", arrival: "6:00 PM" },
+      { name: "Mini Bus", price: 300, type: "Non-AC Seater", departure: "9:00 AM", arrival: "1:30 PM" },
+      { name: "Express Bus", price: 600, type: "AC Express", departure: "3:00 PM", arrival: "8:00 PM" }
+    ];
+
+    // Render bus results
+    const resultsContainer = document.getElementById('busResults');
+    resultsContainer.innerHTML = `
+      <div>
+        ${buses.map(bus => `
+          <div class="bus-item">
+            <h3>${bus.name}</h3>
+            <p>Type: ${bus.type}</p>
+            <p>Price: ₹${bus.price}</p>
+            <p>Departure: ${bus.departure} | Arrival: ${bus.arrival}</p>
+            <a href="#" class="book-btn" onclick="openDialog('${bus.name}', '${bus.price}')">Book Now</a>
+          </div>
+        `).join('')}
+      </div>
     `;
+
+    // Open Dialog
+    function openDialog(busName, busPrice) {
+      const dialog = document.getElementById('bookingDialog');
+      const dialogDetails = document.getElementById('dialogDetails');
+      dialogDetails.innerHTML = `
+        <strong>Bus Name:</strong> ${busName}<br>
+        <strong>Price:</strong> ₹${busPrice}
+      `;
+      dialog.style.display = 'flex';
+    }
+
+    // Update Passenger Fields dynamically
+    function updatePassengerFields() {
+      const numPassengers = document.getElementById('numPassengers').value;
+      const passengerFields = document.getElementById('passengerFields');
+      passengerFields.innerHTML = '';
+
+      for (let i = 0; i < numPassengers; i++) {
+        const passengerHTML = `
+          <div class="passenger-item">
+            <label for="passengerName${i}">Passenger ${i + 1} Name:</label>
+            <input type="text" id="passengerName${i}" placeholder="Enter name of passenger ${i + 1}">
+            
+            <label for="passengerGender${i}">Gender:</label>
+            <select id="passengerGender${i}">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        `;
+        passengerFields.innerHTML += passengerHTML;
+      }
+    }
+
+    // Close Dialog
+    function closeDialog() {
+      const dialog = document.getElementById('bookingDialog');
+      dialog.style.display = 'none';
+    }
+
+    // Payment function (for demo purposes)
+    function payNow() {
+      const numPassengers = document.getElementById('numPassengers').value;
+      let allDetails = `Booking confirmed for ${numPassengers} passengers. Details:\n\n`;
+
+      for (let i = 0; i < numPassengers; i++) {
+        const name = document.getElementById(`passengerName${i}`).value;
+        const gender = document.getElementById(`passengerGender${i}`).value;
+        allDetails += `Passenger ${i + 1}: Name: ${name}, Gender: ${gender}\n`;
+      }
+
+      alert(allDetails); // For demo purposes, showing a confirmation alert
+      closeDialog(); // Close dialog after payment
+    }
+
+    // Close dialog when clicking outside the content
+    window.onclick = function (event) {
+      const dialog = document.getElementById('bookingDialog');
+      if (event.target === dialog) {
+        closeDialog();
+      }
+    };
   </script>
 </body>
 </html>
