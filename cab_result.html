@@ -17,6 +17,40 @@
       </div>
     </main>
   </div>
+
+  <!-- Booking Dialog -->
+  <div id="bookingDialog" class="dialog">
+    <div class="dialog-content">
+      <h3>Booking Details</h3>
+      <form id="bookingForm">
+        <label for="passengerCount">Number of Passengers:</label>
+        <input type="number" placeholder="enter number" id="passengerCount" name="passengerCount" min="1" required>
+
+        <div id="passengerDetails" class="passenger-details">
+          <!-- Dynamic fields will be inserted here based on the passenger count -->
+        </div>
+
+        <label for="contactNumber">Contact Number:</label>
+        <input type="tel" placeholder = "enter number" id="contactNumber" name="contactNumber" required>
+      </br>
+        <label for="paymentMethod">Payment Method:</label>
+        <select id="paymentMethod" name="paymentMethod" required>
+          <option value="creditCard">Credit Card</option>
+          <option value="debitCard">Debit Card</option>
+          <option value="paypal">PayPal</option>
+          <option value="upi">upi</option>
+        </select>
+
+        <div class="button-group">
+          <button type="button" class="cancel-btn" onclick="closeDialog()">Cancel</button>
+          <button type="submit" class="pay-btn">Pay Now</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="overlay" class="overlay"></div>
+
   <script>
     // Parse query parameters from URL
     const params = new URLSearchParams(window.location.search);
@@ -24,17 +58,133 @@
     const to = params.get('to');
     const date = params.get('date');
 
+    // Example cab data
+    const cabOptions = [
+      {
+        name: 'Sedan',
+        type: '4-Seater',
+        price: 1500,
+        description: 'Comfortable sedan for small groups or families. AC included.',
+        available: true,
+        details: 'This is a compact sedan with a spacious interior suitable for 4 passengers.'
+      },
+      {
+        name: 'SUV',
+        type: '6-Seater',
+        price: 2000,
+        description: 'Spacious SUV for larger groups or families. AC and extra luggage space.',
+        available: true,
+        details: 'A robust SUV ideal for families, equipped with extra space for luggage.'
+      },
+      {
+        name: 'Hatchback',
+        type: '4-Seater',
+        price: 1200,
+        description: 'Compact and efficient hatchback, perfect for short distances.',
+        available: true,
+        details: 'A compact hatchback that offers good fuel efficiency and comfort for short distances.'
+      },
+      {
+        name: 'Luxury',
+        type: '4-Seater',
+        price: 3000,
+        description: 'Luxury ride with premium features, AC, and comfort for special occasions.',
+        available: true,
+        details: 'A luxurious car with plush interiors, designed for those looking for extra comfort and style.'
+      },
+      {
+        name: 'Minivan',
+        type: '7-Seater',
+        price: 2500,
+        description: 'Spacious minivan for large groups or family trips.',
+        available: true,
+        details: 'A minivan offering generous seating and luggage space, ideal for group travel.'
+      },
+      {
+        name: 'Convertible',
+        type: '2-Seater',
+        price: 3500,
+        description: 'A stylish convertible car for a unique experience.',
+        available: true,
+        details: 'Perfect for those looking to enjoy the open air and drive in style.'
+      }
+    ];
+
     // Display the results dynamically
     document.getElementById('cabResults').innerHTML = `
       <h2>Results for: ${from} to ${to}</h2>
       <p>Travel Date: ${date}</p>
-      <ul>
-        <li>Cab 1: Sedan (4-Seater) - ₹1,500</li>
-        <li>Cab 2: SUV (6-Seater) - ₹2,000</li>
-        <li>Cab 3: Hatchback (4-Seater) - ₹1,200</li>
-        <li>Cab 4: Luxury (4-Seater) - ₹3,000</li>
-      </ul>
+      <div>
+        ${cabOptions.map(cab => `
+          <div class="cab-item">
+            <h3>${cab.name} (${cab.type})</h3>
+            <p><strong>Description:</strong> ${cab.description}</p>
+            <p><strong>Details:</strong> ${cab.details}</p>
+            <p class="price">Price: ₹${cab.price}</p>
+            <a href="#" class="book-btn" onclick="openBookingDialog('${cab.name}', ${cab.price})">Book Now</a>
+          </div>
+        `).join('')}
+      </div>
     `;
+
+    // Open the booking dialog
+    function openBookingDialog(cabName, price) {
+      const dialog = document.getElementById('bookingDialog');
+      const overlay = document.getElementById('overlay');
+      dialog.style.display = 'block';
+      overlay.style.display = 'block';
+
+      // Clear previous passenger details
+      document.getElementById('passengerDetails').innerHTML = '';
+
+      // Add event listener for the passenger count change
+      document.getElementById('passengerCount').oninput = function() {
+        const passengerCount = parseInt(document.getElementById('passengerCount').value);
+        generatePassengerFields(passengerCount);
+      };
+
+      // Store the cab details for submission
+      document.getElementById('bookingForm').onsubmit = function(e) {
+        e.preventDefault();
+        const passengerCount = document.getElementById('passengerCount').value;
+        const passengerNames = document.getElementById('passengerNames').value;
+        const contactNumber = document.getElementById('contactNumber').value;
+        const paymentMethod = document.getElementById('paymentMethod').value;
+
+        // Simulate payment
+        alert(`Booking confirmed for ${passengerCount} passengers: ${passengerNames}\nTotal Amount: ₹${price}\nPayment Method: ${paymentMethod}`);
+        closeDialog(); // Close the dialog after submission
+      };
+    }
+
+    // Generate passenger details dynamically based on the number of passengers
+    function generatePassengerFields(passengerCount) {
+      const container = document.getElementById('passengerDetails');
+      for (let i = 0; i < passengerCount; i++) {
+        const passengerDiv = document.createElement('div');
+        passengerDiv.classList.add('passenger');
+        passengerDiv.innerHTML = `
+          <label for="passengerName${i}">Passenger ${i + 1} Name:</label>
+          <input type="text" id="passengerName${i}" name="passengerName${i}" required>
+
+          <label for="passengerGender${i}">Gender:</label>
+          <select id="passengerGender${i}" name="passengerGender${i}" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        `;
+        container.appendChild(passengerDiv);
+      }
+    }
+
+    // Close the booking dialog
+    function closeDialog() {
+      const dialog = document.getElementById('bookingDialog');
+      const overlay = document.getElementById('overlay');
+      dialog.style.display = 'none';
+      overlay.style.display = 'none';
+    }
   </script>
 </body>
 </html>

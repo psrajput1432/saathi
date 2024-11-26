@@ -1,0 +1,196 @@
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header */
+header {
+  background-color: #88d498; /* Soft Green */
+  padding: 25px;
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  color: white;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+
+
+/* Cab Item Styling */
+.cab-item {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%; /* Set width to 100% to take full width */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.cab-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.cab-item h3 {
+  font-size: 1.6rem;
+  color: #56b44e; /* Green */
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.cab-item p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.cab-item .price {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #f7a300; /* Yellow */
+}
+
+.book-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #56b44e; /* Green */
+  color: white;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+}
+
+.book-btn:hover {
+  background-color: #489a40; /* Darker Green */
+}
+
+/*/* Dialog and Overlay Styles */
+.dialog {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* Styling for the Dialog Box */
+.dialog-content {
+  background-color: #fff;
+  padding: 20px;
+  max-width: 500px;
+  margin: 100px auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 70vh; /* Max height of the dialog */
+  position: relative;
+  text-align: center;
+}
+
+.dialog-content h3 {
+  margin-top: 0;
+}
+
+.passenger-details {
+  margin-bottom: 20px;
+}
+
+.passenger {
+  margin-bottom: 15px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancel-btn, .pay-btn {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background-color: #ff6f61;
+}
+
+.cancel-btn:hover, .pay-btn:hover {
+  background-color: #0056b3;
+}
+
+.pay-btn {
+  background-color: #28a745;
+}
+
+.cancel-btn:hover {
+  background-color: #e63946;
+}
+
+/* Overlay */
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .cab-item {
+    width: calc(50% - 20px); /* 2 items per row on tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .cab-item {
+    width: 100%; /* Full width on mobile */
+  }
+}

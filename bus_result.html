@@ -122,22 +122,40 @@
   </div>
 
   <!-- Booking Dialog -->
-  <div id="bookingDialog" class="dialog">
-    <div class="dialog-content">
-      <div class="dialog-header">
-        Booking Details
-      </div>
-      <div class="dialog-body">
-        <p id="dialogDetails"></p>
-        <label for="numPassengers">Number of Passengers:</label>
-        <input type="number" id="numPassengers" min="1" placeholder="Enter number of passengers" onchange="updatePassengerFields()" />
+<div id="bookingDialog" class="dialog">
+  <div class="dialog-content">
+    <div class="dialog-header">
+      Booking Details
+    </div>
+    <div class="dialog-body">
+      <p id="dialogDetails"></p>
 
-        <div id="passengerFields" class="passenger-list"></div>
-      </div>
+      <!-- Number of Passengers -->
+      <label for="numPassengers">Number of Passengers:</label>
+      <input type="number" id="numPassengers" min="1" placeholder="Enter number of passengers" onchange="updatePassengerFields()" />
+
+      <!-- Passenger Details -->
+      <div id="passengerFields" class="passenger-list"></div>
+
+      <!-- Payment Method -->
+      <label for="paymentMethod">Payment Method:</label>
+      <select id="paymentMethod">
+        <option value="creditCard">Credit/Debit Card</option>
+        <option value="upi">UPI</option>
+        <option value="netBanking">Net Banking</option>
+        <option value="paypal">Pay pal</option>
+      
+      </select>
+
+      <div id="paymentDetails" class="payment-details"></div>
+    </div>
+    <div class="dialog-footer">
       <button class="close-btn" onclick="closeDialog()">Close</button>
       <button class="pay-btn" onclick="payNow()">Pay Now</button>
     </div>
   </div>
+</div>
+
 
   <script>
     // Bus data (for example purposes)
