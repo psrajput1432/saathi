@@ -17,6 +17,41 @@
       </div>
     </main>
   </div>
+
+  <!-- Booking Modal -->
+  <div id="bookingModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Book Your Flight</h2>
+      <p id="selectedFlight"></p>
+
+      <!-- Number of passengers and details -->
+      <div id="passengerCountSection">
+        <label for="numPassengers">Number of Passengers:</label>
+        <input type="number" id="numPassengers" name="numPassengers" min="1" required>
+        <button onclick="generatePassengerDetails()">Next</button>
+      </div>
+
+      <div id="passengerDetails" style="display: none;">
+        <h3>Passenger Details</h3>
+        <div id="passengerDetailsForm"></div>
+        <button onclick="showPaymentSection()">Next</button>
+      </div>
+
+      <div id="paymentInfo" style="display: none;">
+        <h3>Payment Information</h3>
+        <label for="paymentMethod">Select Payment Method:</label>
+        <select id="paymentMethod">
+          <option value="credit">Credit Card</option>
+          <option value="debit">Debit Card</option>
+          <option value="upi">UPI</option>
+        </select><br><br>
+       
+        <button onclick="payNow()">Pay Now</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Parse query parameters from URL
     const params = new URLSearchParams(window.location.search);
@@ -29,12 +64,117 @@
       <h2>Results for: ${from} to ${to}</h2>
       <p>Travel Date: ${date}</p>
       <ul>
-        <li>Flight 1: Indigo - ₹5,000</li>
-        <li>Flight 2: Air India - ₹6,500</li>
-        <li>Flight 3: Vistara - ₹7,000</li>
-        <li>Flight 4: SpiceJet - ₹4,800</li>
+        <li>
+          <strong>Flight 1:</strong> Indigo - ₹5,000 <br>
+          <em>Departure:</em> 07:30 AM <em>Arrival:</em> 09:30 AM <br>
+          <em>Class:</em> Economy <br>
+          <em>Duration:</em> 2 hours
+          <button onclick="bookFlight('Indigo', 5000)">Book Now</button>
+        </li>
+         <li>
+          <strong>Flight 2:</strong> Air India - ₹6,500 <br>
+          <em>Departure:</em> 10:00 AM <em>Arrival:</em> 12:30 PM <br>
+          <em>Class:</em> Business, Economy <br>
+          <em>Duration:</em> 2 hours 30 minutes
+          <button onclick="bookFlight('Air India', 6500)">Book Now</button>
+        </li>
+        <li>
+          <strong>Flight 3:</strong> Vistara - ₹7,000 <br>
+          <em>Departure:</em> 02:00 PM <em>Arrival:</em> 04:00 PM <br>
+          <em>Class:</em> Premium Economy, Economy <br>
+          <em>Duration:</em> 2 hours
+          <button onclick="bookFlight('Vistara', 7000)">Book Now</button>
+        </li>
+        <li>
+          <strong>Flight 4:</strong> SpiceJet - ₹4,800 <br>
+          <em>Departure:</em> 05:00 PM <em>Arrival:</em> 07:00 PM <br>
+          <em>Class:</em> Economy <br>
+          <em>Duration:</em> 2 hours
+          <button onclick="bookFlight('SpiceJet', 4800)">Book Now</button>
+        </li>
+        <li>
+          <strong>Flight 5:</strong> GoAir - ₹4,200 <br>
+          <em>Departure:</em> 06:30 AM <em>Arrival:</em> 08:30 AM <br>
+          <em>Class:</em> Economy <br>
+          <em>Duration:</em> 2 hours
+          <button onclick="bookFlight('GoAir', 4200)">Book Now</button>
+        </li>
+        <li>
+          <strong>Flight 6:</strong> Emirates - ₹15,000 <br>
+          <em>Departure:</em> 11:00 AM <em>Arrival:</em> 02:00 PM <br>
+          <em>Class:</em> First Class, Business <br>
+          <em>Duration:</em> 3 hours
+          <button onclick="bookFlight('Emirates', 15000)">Book Now</button>
+        </li>
       </ul>
     `;
+
+    // Functionality for modal booking
+    function bookFlight(flightName, price) {
+      document.getElementById('selectedFlight').innerText = `You selected to book: ${flightName}`;
+      document.getElementById('paymentAmount').innerText = price;
+      document.getElementById('bookingModal').style.display = 'block';
+      
+      document.getElementById('passengerCountSection').style.display = 'block';
+      document.getElementById('passengerDetails').style.display = 'none';
+      document.getElementById('paymentInfo').style.display = 'none';
+    }
+
+    function generatePassengerDetails() {
+      const numPassengers = document.getElementById('numPassengers').value || 1;
+      if (numPassengers < 1) {
+        alert('Please enter a valid number of passengers.');
+        return;
+      }
+
+      document.getElementById('passengerCountSection').style.display = 'none';
+      const passengerDetailsContainer = document.getElementById('passengerDetailsForm');
+      passengerDetailsContainer.innerHTML = '';
+
+      for (let i = 0; i < numPassengers; i++) {
+        passengerDetailsContainer.innerHTML += `
+          <h4>Passenger ${i + 1} Details:</h4>
+          <label for="passengerName${i}">Name:</label>
+          <input type="text" id="passengerName${i}" required><br>
+          <label for="passengerGender${i}">Gender:</label>
+          <select id="passengerGender${i}">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select><br><br>
+        `;
+      }
+
+      document.getElementById('passengerDetails').style.display = 'block';
+    }
+
+    function showPaymentSection() {
+      document.getElementById('paymentInfo').style.display = 'block';
+    }
+
+    function payNow() {
+      const numPassengers = document.getElementById('numPassengers').value || 1;
+      const passengers = [];
+      for (let i = 0; i < numPassengers; i++) {
+        const name = document.getElementById(`passengerName${i}`).value;
+        const gender = document.getElementById(`passengerGender${i}`).value;
+        if (!name) {
+          alert('Please enter all passenger details');
+          return;
+        }
+        passengers.push({ name, gender });
+      }
+
+      const paymentMethod = document.getElementById('paymentMethod').value;
+      alert(`Payment successful! You have booked for ${numPassengers} passenger(s) with the following details: \n
+      ${passengers.map(p => `Name: ${p.name}, Gender: ${p.gender}`).join("\n")}\n
+      Payment Method: ${paymentMethod}`);
+      closeModal();
+    }
+
+    function closeModal() {
+      document.getElementById('bookingModal').style.display = 'none';
+    }
   </script>
 </body>
 </html>

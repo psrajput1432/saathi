@@ -7,7 +7,7 @@
 
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   color: #333;
 }
 
@@ -20,7 +20,7 @@ body {
 
 /* Header */
 header {
-  background-color: #88d498; /* Soft Green */
+  background-color: #ffffff; /* Soft Green */
   padding: 25px;
   text-align: center;
   border-radius: 10px;
@@ -29,8 +29,8 @@ header {
 }
 
 header h1 {
-  color: white;
-  font-size: 3rem;
+  color: #28a745;
+  font-size: 2rem;
   font-weight: 700;
   letter-spacing: 2px;
 }
@@ -39,11 +39,12 @@ header h1 {
 
 /* Cab Item Styling */
 .cab-item {
-  background-color: #ffffff;
+  background-color: #f9fbe7;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width: 100%; /* Set width to 100% to take full width */
+  border: 1px solid #28a745;
+  width: 80%; /* Set width to 100% to take full width */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -76,7 +77,7 @@ header h1 {
 .book-btn {
   display: inline-block;
   padding: 12px 24px;
-  background-color: #56b44e; /* Green */
+  background-color: #3768e6; /* Green */
   color: white;
   font-size: 1rem;
   text-decoration: none;

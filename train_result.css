@@ -1,0 +1,319 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body and Container Styling */
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e7e7d0; /* Soft yellow background */
+    color: #37474f; /* Subtle text color for contrast */
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    
+    background-color: #ffffff; /* White background for content */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header Styling */
+  header h1 {
+    text-align: center;
+    color: #558b2f; /* Green for header */
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Results Container */
+  .results-container {
+    margin-top: 20px;
+  }
+  
+  .results-container h2 {
+    font-size: 1.5rem;
+    color: #33691e; /* Dark green for section titles */
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .results-container p {
+    font-size: 1rem;
+    color: #607d8b; /* Muted text color */
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .results-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .results-container li {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #28a745;
+     /* Soft green border */
+    border-radius: 5px;
+    background-color: #f1f8e9; /* Light green background */
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  
+  .results-container li:hover {
+    transform: scale(1.02); /* Slight zoom effect */
+    background-color: #e8f5e9; /* Lighter green on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Add shadow */
+  }
+  
+  .results-container li strong {
+    color: #33691e;
+  }
+  
+  .results-container li em {
+    font-style: normal;
+    color: #607d8b; /* Muted text color */
+    margin: 2px 0;
+  }
+  
+  .results-container li button {
+    align-self: flex-end; /* Aligns button to the right */
+    margin-top: 10px;
+    background-color: #4b9cde; /* Soft green button */
+    color: #ffffff;
+    border: none;
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .results-container li button:hover {
+    background-color: #66bb6a; /* Darker green on hover */
+    transform: translateY(-3px); /* Lift effect on hover */
+  }
+  
+  .results-container li button:focus {
+    outline: none;
+    box-shadow: 0 0 4px #66bb6a;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .container {
+      padding: 15px;
+    }
+  
+    .results-container li {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .results-container li button {
+      align-self: stretch;
+      text-align: center;
+    }
+  }
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow: auto;
+  }
+  
+  .modal.hidden {
+    display: none;
+  }
+  
+  .modal-content {
+    background: #ffffff;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: auto;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  .modal-content h2 {
+    margin-bottom: 15px;
+  }
+  
+  .modal-content label {
+    display: block;
+    margin: 10px 0 5px;
+  }
+  
+  .modal-content input,
+  .modal-content select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .modal-content button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .modal-content button:hover {
+    background-color: #45a049;
+  }
+
+/* Overlay for Dialog */
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+/* Dialog Box */
+#bookingDialog {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 400px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  z-index: 1001;
+}
+
+#bookingDialog h3 {
+  margin-top: 0;
+  font-size: 20px;
+  text-align: center;
+}
+
+#bookingDialog .close-dialog {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff4c4c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#bookingDialog .close-dialog:hover {
+  background: #d03434;
+}
+
+/* Form Styles */
+#bookingForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: #555;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+#passengerDetails .form-group {
+  border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+}
+
+#bookingForm button {
+  padding: 12px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#bookingForm button:hover {
+  background: #0056b3;
+}
+
+/* Scrollable Passenger Details */
+#passengerDetails {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  padding-right: 5px;
+}
+
+/* Scrollbar styling */
+#passengerDetails::-webkit-scrollbar {
+  width: 8px;
+}
+
+#passengerDetails::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 4px;
+}
+
+#passengerDetails::-webkit-scrollbar-thumb:hover {
+  background: #bbb;
+}
+  

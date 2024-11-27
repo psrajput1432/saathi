@@ -17,6 +17,35 @@
       </div>
     </main>
   </div>
+
+  <!-- Dialog Box for Booking -->
+  <div id="overlay"></div>
+  <div id="bookingDialog">
+    <button class="close-dialog" onclick="closeDialog()">X</button>
+    <h3>Book Train</h3>
+    <form id="bookingForm">
+      <div class="form-group">
+        <label for="trainName">Selected Train:</label>
+        <input type="text" id="trainName" readonly>
+      </div>
+      <div class="form-group">
+        <label for="passengerCount">Number of Passengers:</label>
+        <input type="number" id="passengerCount" min="1" max="10" required>
+      </div>
+      <div id="passengerDetails"></div>
+      <div class="form-group">
+        <label for="paymentMethod">Payment Method:</label>
+        <select id="paymentMethod" required>
+          <option value="creditCard">Credit Card</option>
+          <option value="debitCard">Debit Card</option>
+          <option value="netBanking">Net Banking</option>
+          <option value="upi">UPI</option>
+        </select>
+      </div>
+      <button type="button" onclick="submitBooking()">Pay Now</button>
+    </form>
+  </div>
+
   <script>
     // Parse query parameters from URL
     const params = new URLSearchParams(window.location.search);
@@ -24,17 +53,71 @@
     const to = params.get('to');
     const date = params.get('date');
 
-    // Display the results dynamically
-    document.getElementById('trainResults').innerHTML = `
-      <h2>Results for: ${from} to ${to}</h2>
-      <p>Travel Date: ${date}</p>
-      <ul>
-        <li>Train 1: Rajdhani Express - ₹1,500</li>
-        <li>Train 2: Shatabdi Express - ₹1,200</li>
-        <li>Train 3: Garib Rath - ₹800</li>
-        <li>Train 4: Sleeper Class Express - ₹400</li>
-      </ul>
-    `;
+    // Dynamic train results
+    const trainData = [
+      { name: "Rajdhani Express", price: 1500, departure: "08:00 AM", arrival: "02:00 PM", class: "AC First Class, AC 2-Tier", duration: "6 hours" },
+      { name: "Shatabdi Express", price: 1200, departure: "07:30 AM", arrival: "01:30 PM", class: "Executive Class, AC Chair Car", duration: "6 hours" },
+      { name: "Garib Rath", price: 800, departure: "09:00 AM", arrival: "05:00 PM", class: "AC 3-Tier", duration: "8 hours" },
+      { name: "Sleeper Class Express", price: 400, departure: "10:30 PM", arrival: "08:30 AM", class: "Sleeper Class, General", duration: "10 hours" },
+      { name: "Duronto Express", price: 1800, departure: "11:00 AM", arrival: "05:00 PM", class: "AC First Class, AC 2-Tier", duration: "6 hours" }
+    ];
+
+    let resultsHTML = `<h2>Results for: ${from} to ${to}</h2><p>Travel Date: ${date}</p><ul>`;
+    trainData.forEach(train => {
+      resultsHTML += `
+        <li>
+          <strong>${train.name}</strong> - ₹${train.price} <br>
+          <em>Departure:</em> ${train.departure} <em>Arrival:</em> ${train.arrival} <br>
+          <em>Class:</em> ${train.class} <br>
+          <em>Duration:</em> ${train.duration} 
+          <button onclick="openDialog('${train.name}')">Book Now</button>
+        </li>
+      `;
+    });
+
+    resultsHTML += `</ul>`;
+    document.getElementById('trainResults').innerHTML = resultsHTML;
+
+    // Open dialog box
+    function openDialog(trainName) {
+      document.getElementById('overlay').style.display = 'block';
+      document.getElementById('bookingDialog').style.display = 'block';
+      document.getElementById('trainName').value = trainName;
+    }
+
+    // Close dialog box
+    function closeDialog() {
+      document.getElementById('overlay').style.display = 'none';
+      document.getElementById('bookingDialog').style.display = 'none';
+    }
+
+    // Generate passenger details dynamically
+    document.getElementById('passengerCount').addEventListener('input', function () {
+      const count = this.value;
+      const passengerDetails = document.getElementById('passengerDetails');
+      passengerDetails.innerHTML = '';
+      for (let i = 0; i < count; i++) {
+        passengerDetails.innerHTML += `
+          <div class="form-group">
+            <label for="passengerName${i}">Passenger ${i + 1} Name:</label>
+            <input type="text" id="passengerName${i}" required>
+            <label for="passengerGender${i}">Gender:</label>
+            <select id="passengerGender${i}" required>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        `;
+      }
+    });
+
+    // Submit booking
+    function submitBooking() {
+      const trainName = document.getElementById('trainName').value;
+      alert(`Booking confirmed for ${trainName}`);
+      closeDialog();
+    }
   </script>
 </body>
 </html>
