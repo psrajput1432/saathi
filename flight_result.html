@@ -18,48 +18,92 @@
     </main>
   </div>
 
-  <!-- Booking Modal -->
-  <div id="bookingModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <h2>Book Your Flight</h2>
-      <p id="selectedFlight"></p>
-
-      <!-- Number of passengers and details -->
-      <div id="passengerCountSection">
-        <label for="numPassengers">Number of Passengers:</label>
-        <input type="number" id="numPassengers" name="numPassengers" min="1" required>
-        <button onclick="generatePassengerDetails()">Next</button>
+  <!-- Booking Dialog -->
+  <div class="dialog-container" id="bookingDialog">
+    <div class="dialog-box">
+      <h3>Flight Booking</h3>
+      <div id="dialogContent">
+        <!-- Dynamic content will be inserted here -->
       </div>
-
-      <div id="passengerDetails" style="display: none;">
-        <h3>Passenger Details</h3>
-        <div id="passengerDetailsForm"></div>
-        <button onclick="showPaymentSection()">Next</button>
-      </div>
-
-      <div id="paymentInfo" style="display: none;">
-        <h3>Payment Information</h3>
-        <label for="paymentMethod">Select Payment Method:</label>
-        <select id="paymentMethod">
-          <option value="credit">Credit Card</option>
-          <option value="debit">Debit Card</option>
-          <option value="upi">UPI</option>
-        </select><br><br>
-       
-        <button onclick="payNow()">Pay Now</button>
-      </div>
+      <button class="close-btn" onclick="closeDialog()">Close</button>
     </div>
   </div>
 
   <script>
-    // Parse query parameters from URL
+    // Function to show the booking dialog
+    function bookFlight(flightName, price) {
+      const dialog = document.getElementById('bookingDialog');
+      const dialogContent = document.getElementById('dialogContent');
+
+      dialogContent.innerHTML = `
+        <p><strong>Flight:</strong> ${flightName}</p>
+        <p><strong>Price per ticket:</strong> ₹${price}</p>
+        <div class="form-group">
+          <label for="numPassengers">Number of Passengers:</label>
+          <input type="number" id="numPassengers" min="1" max="10" value="1" onchange="generatePassengerFields()">
+        </div>
+        <div id="passengerDetails"></div>
+        <div class="form-group">
+          <label for="paymentMethod">Payment Method:</label>
+          <select id="paymentMethod">
+            <option value="credit_card">Credit Card</option>
+            <option value="debit_card">Debit Card</option>
+            <option value="upi">UPI</option>
+            <option value="net_banking">Net Banking</option>
+            <option value="wallet">Wallet</option>
+          </select>
+        </div>
+        <button class="pay-btn" onclick="payNow()">Pay Now</button>
+      `;
+
+      generatePassengerFields(); // Generate fields for passenger details
+      dialog.style.display = 'flex';
+    }
+
+    // Function to generate passenger details fields
+    function generatePassengerFields() {
+      const numPassengers = document.getElementById('numPassengers').value;
+      const passengerDetails = document.getElementById('passengerDetails');
+
+      let fields = '';
+      for (let i = 1; i <= numPassengers; i++) {
+        fields += `
+          <div class="form-group">
+            <label for="passengerName${i}">Passenger ${i} Name:</label>
+            <input type="text" id="passengerName${i}" placeholder="Enter name">
+          </div>
+          <div class="form-group">
+            <label for="passengerGender${i}">Passenger ${i} Gender:</label>
+            <select id="passengerGender${i}">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        `;
+      }
+
+      passengerDetails.innerHTML = fields;
+    }
+
+    // Function to close the dialog
+    function closeDialog() {
+      document.getElementById('bookingDialog').style.display = 'none';
+    }
+
+    // Function to handle payment
+    function payNow() {
+      const paymentMethod = document.getElementById('paymentMethod').value;
+      alert(`Payment successful via ${paymentMethod.toUpperCase()}! Booking confirmed.`);
+      closeDialog();
+    }
+
+    // Display flight results dynamically
     const params = new URLSearchParams(window.location.search);
     const from = params.get('from');
     const to = params.get('to');
     const date = params.get('date');
 
-    // Display the results dynamically
     document.getElementById('flightResults').innerHTML = `
       <h2>Results for: ${from} to ${to}</h2>
       <p>Travel Date: ${date}</p>
@@ -70,13 +114,6 @@
           <em>Class:</em> Economy <br>
           <em>Duration:</em> 2 hours
           <button onclick="bookFlight('Indigo', 5000)">Book Now</button>
-        </li>
-         <li>
-          <strong>Flight 2:</strong> Air India - ₹6,500 <br>
-          <em>Departure:</em> 10:00 AM <em>Arrival:</em> 12:30 PM <br>
-          <em>Class:</em> Business, Economy <br>
-          <em>Duration:</em> 2 hours 30 minutes
-          <button onclick="bookFlight('Air India', 6500)">Book Now</button>
         </li>
         <li>
           <strong>Flight 3:</strong> Vistara - ₹7,000 <br>
@@ -108,73 +145,6 @@
         </li>
       </ul>
     `;
-
-    // Functionality for modal booking
-    function bookFlight(flightName, price) {
-      document.getElementById('selectedFlight').innerText = `You selected to book: ${flightName}`;
-      document.getElementById('paymentAmount').innerText = price;
-      document.getElementById('bookingModal').style.display = 'block';
-      
-      document.getElementById('passengerCountSection').style.display = 'block';
-      document.getElementById('passengerDetails').style.display = 'none';
-      document.getElementById('paymentInfo').style.display = 'none';
-    }
-
-    function generatePassengerDetails() {
-      const numPassengers = document.getElementById('numPassengers').value || 1;
-      if (numPassengers < 1) {
-        alert('Please enter a valid number of passengers.');
-        return;
-      }
-
-      document.getElementById('passengerCountSection').style.display = 'none';
-      const passengerDetailsContainer = document.getElementById('passengerDetailsForm');
-      passengerDetailsContainer.innerHTML = '';
-
-      for (let i = 0; i < numPassengers; i++) {
-        passengerDetailsContainer.innerHTML += `
-          <h4>Passenger ${i + 1} Details:</h4>
-          <label for="passengerName${i}">Name:</label>
-          <input type="text" id="passengerName${i}" required><br>
-          <label for="passengerGender${i}">Gender:</label>
-          <select id="passengerGender${i}">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select><br><br>
-        `;
-      }
-
-      document.getElementById('passengerDetails').style.display = 'block';
-    }
-
-    function showPaymentSection() {
-      document.getElementById('paymentInfo').style.display = 'block';
-    }
-
-    function payNow() {
-      const numPassengers = document.getElementById('numPassengers').value || 1;
-      const passengers = [];
-      for (let i = 0; i < numPassengers; i++) {
-        const name = document.getElementById(`passengerName${i}`).value;
-        const gender = document.getElementById(`passengerGender${i}`).value;
-        if (!name) {
-          alert('Please enter all passenger details');
-          return;
-        }
-        passengers.push({ name, gender });
-      }
-
-      const paymentMethod = document.getElementById('paymentMethod').value;
-      alert(`Payment successful! You have booked for ${numPassengers} passenger(s) with the following details: \n
-      ${passengers.map(p => `Name: ${p.name}, Gender: ${p.gender}`).join("\n")}\n
-      Payment Method: ${paymentMethod}`);
-      closeModal();
-    }
-
-    function closeModal() {
-      document.getElementById('bookingModal').style.display = 'none';
-    }
   </script>
 </body>
 </html>
