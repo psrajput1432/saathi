@@ -8,6 +8,28 @@ html, body {
    width: 100%;
    overflow-x: hidden;
 }
+#textbw{
+   color: black;
+   
+}
+
+.welcome-palette {
+   width: 800px;
+   height: 250px;
+   padding: 20px;
+   background-color: #e1be977b;
+   background-image: url('wlcm.jpg');; /* Replace with your actual image URL */
+   background-size: cover; /* Ensure the image covers the entire div */
+   background-position: center; /* Center the image within the div */
+   border: 5px solid #fff;  /* Adds a white border around the palette */
+   border-radius: 15px;  /* Optional: Adds rounded corners to the border */
+   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);  /* Adds a soft shadow around the palette */
+   position: relative;  
+}
+
+ 
+    
+
 
 #header {
    height: 13%;
