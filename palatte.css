@@ -1,0 +1,131 @@
+ #page1{
+  font-family: Arial, sans-serif;
+  margin: 0;
+  height: 100vh; /* Full viewport height */
+  display: flex; /* Enables Flexbox on the body */
+  align-items: center; /* Centers the content vertically */
+  justify-content: center; /* Centers the content horizontally */
+  background-color: #f9f9f9; 
+ }
+
+ .search-palette {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .trip-options {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .trip-options label {
+    font-weight: bold;
+  }
+  
+  .search-fields {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+  
+  .search-fields div {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .search-fields input, 
+  .search-fields button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .special-fares {
+    margin-top: 20px;
+  }
+  
+  .special-fares p {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .special-fares div {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .special-fares button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .special-fares button.active {
+    background: #007bff;
+    color: white;
+  }
+  
+  .traveller-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    display: none;
+  }
+  
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .counter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .counter button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background: white;
+    cursor: pointer;
+  }
+  
+  .counter span {
+    font-weight: bold;
+  }
+  
+  .travel-class button {
+    padding: 8px;
+    border: 1px solid #ccc;
+    background: white;
+    cursor: pointer;
+  }
+  
+  .travel-class button.active {
+    background: #007bff;
+    color: white;
+  }
+  
+  .apply {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: flex-end;
+  }
+  

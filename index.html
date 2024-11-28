@@ -8,18 +8,21 @@
     <link rel="stylesheet" href="extend.css">
     <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="forgot.css">
+    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="search.css">
+    <link rel="stylesheet" href="palatte.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
 </head>
 <body>
-    <div id="main">
+    
         <div id="header">
             <div id="sidebar" class="sidebar">
                 <ul>
                   <li> </li>
                   <li> </li>
-                  <li>Home</li> 
-                  <li><a href="aboutus.html">About Us</li></a>
-                  <li><a href="feedback.html">Feedback</li></a>
+                  <li style="padding-top: 60px; cursor: pointer;" ><a href="index.html" target="_blank">Home</li></a>
+                  <li><a href="aboutus.html" target="_blank">About Us</li></a>
+                  <li><a href="feedback.html" target="_blank">Feedback</li></a>
                   <li>Travel History</li>
                   <li>Transportation Booking</li>
                   <li><a href="https://www.accuweather.com/" target="_blank">Weather Forecast</a></li>
@@ -30,27 +33,73 @@
                 </ul>
               </div>
             <button id="toggleButton" class="toggle-button">☰</button>
-            
+        
             <div id="logo">
-                <img src="images\Sathi__3_-removebg-preview.png" width="244.278x" height="160px">
+                <img src="images\Sathi__3_-removebg-preview.png" width="412.216px" height="270x">
             </div>
-            <div class="vehicle"><i class="ri-search-line"></i></div>
+
+            <!-- Integrated Search Icon and Popup -->
+            <div class="search-icon-container">
+              <i class="ri-search-line" style="font-size: 18px; cursor: pointer; color: rgb(9, 68, 4);" onclick="openSearchPopup()"></i>
+          </div>
+
+          <!-- Search Popup -->
+          <div class="popup-container" id="searchPopup">
+              <div class="popup-content">
+                  <span class="close-popup" onclick="closeSearchPopup()">&times;</span>
+                  <h1>Find Your Travel Destination</h1>
+                  <div class="search-box">
+                      <i class="ri-map-pin-line search-icon"></i>
+                      <input type="text" id="from-location" placeholder="From (City, Country)" />
+                  </div>
+                  <div class="search-box">
+                      <i class="ri-map-pin-line search-icon"></i>
+                      <input type="text" id="to-location" placeholder="To (City, Country)" />
+                  </div>
+                  <button class="search-button" onclick="searchTravel()">Search</button>
+                  <div id="search-results" class="results"></div>
+              </div>
+          </div>
+
+
+          
+            <!-- <div class="vehicle"><i class="ri-search-line"></i></div> -->
+
             <div class="vehicle" id="bus">
-                <a href="bus.html">
+                <a href="bus.html" target="_blank">
                 <i class="ri-bus-fill"></i>
             </div></a>
-            <div class="vehicle" id="flight"><a href="flight.html"><i class="ri-plane-line"></i></div></a>
-            <div class="vehicle" id="train"><a href="train.html"><i class="ri-train-fill"></i></div></a>
-            <div class="vehicle" id="taxi"><a href="cab.html"><i class="ri-taxi-fill"></i></div></a>
-            <div class="vehicle" id="toggle-button">Contact Us</div>
+            <div class="vehicle" id="flight"><a href="flight.html" target="_blank"><i class="ri-plane-line"></i></div></a>
+            <div class="vehicle" id="train"><a href="train.html" target="_blank"><i class="ri-train-fill"></i></div></a>
+            <div class="vehicle" id="taxi"><a href="cab.html" target="_blank"><i class="ri-taxi-fill"></i></div></a>
+            <div class="vehicle" id="toggle-button"><h3>Contact Us</h3></div>
 <div id="contact-details">
     <p>Phone Number: 897456325</p>
     <p>Email: sathi@gmail.com</p>
 </div>
-            <div id="register">
-                <h5>Sign up</h5>
-            </div>
-            <button class="login-icon" onclick="openPopup()"><h5>Login</h5></button>
+            <button class="register-icon" onclick="openSignupPopup()"><h5>Sign Up</h5></button>
+
+            <!-- Signup Popup -->
+            <div id="signupPopup" class="popup">
+              <div class="popup-content">
+                  <span class="close-popup" onclick="closeSignupPopup()">&times;</span>
+                  <h2>Sign Up</h2>
+                  <form>
+                      <!-- <label for="name">Name</label> -->
+                      <input type="text" id="name" placeholder="Enter Name" required>
+
+                      <!-- <label for="email">Email</label> -->
+                      <input type="email" id="email" placeholder="Enter Email" required>
+
+                      <!-- <label for="password">Password</label> -->
+                      <input type="password" id="password" placeholder="Enter Password" required>
+
+                      <button type="submit">Register</button>
+                  </form>
+              </div>
+          </div>
+          
+            <button class="login-icon" onclick="openPopup()"><h4>Login</h4></button>
             <!-- Pop-Up -->
             <div id="popup" class="popup">
                 <div class="popup-content">
@@ -108,18 +157,146 @@
         </div>
         <div id="fakeheader"></div>
         <div id="page1">
-            <div id="webBack"><img src="images\webpic.png" ></div>
+            <div id="webBack">
+              <div class="search-palette" style="margin: 0;
+              padding: 20px;
+              background-color: #f9f9f9;">
+                <div class="trip-options">
+                  <label><input type="radio" name="trip-type" checked> One Way</label>
+                  <label><input type="radio" name="trip-type"> Round Trip</label>
+                  <label><input type="radio" name="trip-type"> Multi City</label>
+                </div>
+                <div class="search-fields">
+                  <div>
+                    <label>From</label>
+                    <input type="text" placeholder="Delhi, DEL, Delhi Airport India">
+                  </div>
+                  <div>
+                    <label>To</label>
+                    <input type="text" placeholder="Bengaluru, BLR, Bengaluru International Airport">
+                  </div>
+                  <div>
+                    <label>Departure</label>
+                    <input type="date">
+                  </div>
+                  <div>
+                    <label>Return</label>
+                    <input type="date" disabled placeholder="Tap to add a return date for bigger discounts">
+                  </div>
+                  <div>
+                    <label>Travellers & Class</label>
+                    <button id="travellers-class">1 Traveller - Economy</button>
+                  </div>
+                </div>
+                <div class="special-fares">
+                  <p>Select a special fare</p>
+                  <div>
+                    <button class="active">Extra Savings</button>
+                    <button>Regular</button>
+                    <button>Student</button>
+                    <button>Senior Citizen</button>
+                    <button>Armed Forces</button>
+                    <button>Doctor and Nurses</button>
+                  </div>
+                </div>
+                <div class="traveller-modal" id="traveller-modal">
+                  <div class="modal-content">
+                    <h3>Travellers & Class</h3>
+                    <div>
+                      <label>ADULTS (12y+)</label>
+                      <div class="counter">
+                        <button class="decrement">-</button>
+                        <span id="adults">1</span>
+                        <button class="increment">+</button>
+                      </div>
+                    </div>
+                    <div>
+                      <label>CHILDREN (2y-12y)</label>
+                      <div class="counter">
+                        <button class="decrement">-</button>
+                        <span id="children">0</span>
+                        <button class="increment">+</button>
+                      </div>
+                    </div>
+                    <div>
+                      <label>INFANTS (below 2y)</label>
+                      <div class="counter">
+                        <button class="decrement">-</button>
+                        <span id="infants">0</span>
+                        <button class="increment">+</button>
+                      </div>
+                    </div>
+                    <div>
+                      <label>CHOOSE TRAVEL CLASS</label>
+                      <div class="travel-class">
+                        <button class="class-option active">Economy/Premium Economy</button>
+                        <button class="class-option">Premium Economy</button>
+                        <button class="class-option">Business</button>
+                        <button class="class-option">First Class</button>
+                      </div>
+                    </div>
+                    <button class="apply">APPLY</button>
+                  </div>
+                </div>
+              </div>
+              <img src="https://img.aelieve.com/wYiwMmE-QHgVgaPM/w:auto/h:auto/q:74/https://cdn.aelieve.com/067b5cb0-travel-toruism.jpg" ></div>
             <div id="AI"><img id="aiImage" src="images/image-removebg-preview.png" /></div>
             <div id="newImage"><img id="newImg" src="images\Sathi__5_-removebg-preview.png" /></div>
         </div>
         <div id="page2">
-            <div id="background">
+            <!-- <div id="background">
                 <img src="images\Sathi__4_-removebg-preview.png">
+            </div> -->
+
+            <div id="main">
+              
+              <div class="container">
+                <img src="https://lp-cms-production.imgix.net/2021-06/500pxRF_113358197.jpg?auto=format&fit=crop&sharp=10&vib=20&ixlib=react-8.6.4&w=850&q=20&dpr=5" alt="">
+                <img src="https://i.ytimg.com/vi/N1eJrcse7VU/maxresdefault.jpg" alt="">
+                <img src="https://media.cntraveler.com/photos/56fd4d7a031da97d43d11079/master/pass/budapest-GettyImages-178060240.jpg" alt="">
+                <img src="https://www.planetware.com/wpimages/2019/11/india-best-places-to-visit-agra.jpg" alt="">
+                <img src="https://www.revv.co.in/blogs/wp-content/uploads/2019/11/self-drive-car-rental-delhi-gurgaon-noida_revv-blog.jpg" alt="">
+                <img src="https://i.ytimg.com/vi/GIv1lWKNe18/maxresdefault.jpg" alt="">
+                <img src="https://www.planetware.com/photos-large/USNY/usa-best-places-orlando.jpg" alt="">
+                <img src="https://cdn1.matadornetwork.com/blogs/1/2020/12/Winter-view-of-Hallstat.jpg" alt="">
+
             </div>
         </div>
+
+        <div id="page3">
+          <div id="main3">
+              <div id="card1" class="card">
+                  <div id="image" ><img src="https://tse2.mm.bing.net/th?id=OIP.kXd4OTxtpYsMYdloeSxoxgHaE8&pid=Api&P=0&h=180" alt=""></div>
+                  <h2>Bus Service</h2>
+                  <p>Be on time</p>
+                  <u style="cursor: pointer;"> <a href="bus.html">Learn more</u></a>
+              </div>
+              <div id="card2" class="card">
+                  <div id="image" ><img src="https://www.lemax.net/wp-content/uploads/2018/04/flight-booking-software-fb.jpg"></div>
+                  <h2>Flight Service</h2>
+                  <p>Fly with us</p>
+                  <u style="cursor: pointer;"> <a href="flight.html">Learn more</u></a>
+              </div>
+              <div id="card3" class="card">
+                  <div id="image" ><img src="https://tse1.mm.bing.net/th?id=OIP.LrcRRJi39QYO0uJn6JGgYgHaIV&pid=Api&P=0&h=180"></div>
+                  <h2>Train Service</h2>
+                  <p>Spend some time together, let's go by train</p>
+                  <u style="cursor: pointer;"> <a href="train.html">Learn more</u></a>
+              </div>
+              <div id="card4" class="card">
+                  <div id="image" ><img src="http://www.bookcabinamritsar.com/images/taxi-rental-amritsar.jpg"></div>
+                  <h2>Cab Service</h2>
+                  <p>Quick cab </p>
+                  <u style="cursor: pointer;"> <a href="cab.html">Learn more</u></a>
+              </div>
+          </div>
+      </div>
     </div>
     <script src="script.js"></script>
     <script src="login.js"></script>
     <script src="forgot.js"></script>
+    <script src="signup.js"></script>
+    <script src="search.js"></script>
+    <script src="palatte.js"></script>
 </body>
 </html>
